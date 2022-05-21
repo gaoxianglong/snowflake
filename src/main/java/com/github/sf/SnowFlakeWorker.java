@@ -80,11 +80,21 @@ public class SnowFlakeWorker implements IdWorker<Long> {
         } else {
             sequence = 0;
         }
+//        if (ct == lts) {
+//            sequence = (++sequence) & MAX_SEQUENCE;
+//            if (0 == sequence) {
+//                sequence = (int) (Math.random() * 100);
+//                ct = tilNextMillis();
+//            }
+//        } else {
+//            sequence = (int) (Math.random() * 100);
+//        }
         lts = ct;
         return ((ct - INIT_TIMESTAMP) << TIMESTAMP_SHIFT)
                 | (idcId << IDC_ID_SHIFT)
                 | (workerId << WORKER_ID_SHIFT)
                 | sequence;
+
     }
 
     private long tilNextMillis() {
